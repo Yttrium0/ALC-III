@@ -5,6 +5,15 @@
 
 #define SWITCH_LIGHT_GPIO 28
 #define IR_SENSOR_GPIO 7
+#define DIST_SENSOR_TRIG 4
+#define DIST_SNESOR_ECHO 5
+
+int setupGpio()
+{
+    
+    
+    
+}
 
 int lightControl(int cmd)
 {
@@ -45,4 +54,32 @@ int IRSensor()
     wiringPiSetupGpio();
     int IRStatus = digitalRead(IR_SENSOR_GPIO);
     return IRStatus;
+}
+
+int DISTSensor()
+{
+    wiringPiSetup();
+    pinMode(TRIG, OUTPUT);
+    pinMode(ECHO, INPUT);
+
+    //TRIG pin must start LOW
+    digitalWrite(TRIG, LOW);
+    delay(30);
+
+    digitalWrite(TRIG, HIGH);
+    delayMicroseconds(20);
+    digitalWrite(TRIG, LOW);
+
+    //Wait for echo start
+    while(digitalRead(ECHO) == LOW);
+
+    //Wait for echo end
+    long startTime = micros();
+    while(digitalRead(ECHO) == HIGH);
+    long travelTime = micros() - startTime;
+
+    //Get distance in cm
+    int distance = travelTime / 58;
+
+    return distance;   
 }
