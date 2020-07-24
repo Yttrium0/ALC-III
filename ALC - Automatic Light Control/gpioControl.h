@@ -6,7 +6,7 @@
 #define SWITCH_LIGHT_GPIO 28
 #define IR_SENSOR_GPIO 7
 #define DIST_SENSOR_TRIG 4
-#define DIST_SNESOR_ECHO 5
+#define DIST_SENSOR_ECHO 5
 
 int setupGpio()
 {
