@@ -40,8 +40,9 @@ int main(void)
            if(IRSensor() == 1 && lightControl(99) == 0){
                   lightControl(1);
            }
-           else if(lightControl(99) == 1){
-                   if(DISTSensor() <= 60 && IRSensor() == 0){
+           else if(lightControl(99) == 1 && DISTSensor() <= 60){
+                   delay(3);
+                   if(IRSensor() == 0){     
                            lightControl(0);
                    }
            }
