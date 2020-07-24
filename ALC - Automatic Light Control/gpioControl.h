@@ -57,7 +57,6 @@ int IRSensor()
 
 int DISTSensor()
 {
-    //TRIG pin must start LOW
     digitalWrite(TRIG, LOW);
     delay(30);
 
@@ -65,15 +64,14 @@ int DISTSensor()
     delayMicroseconds(20);
     digitalWrite(TRIG, LOW);
 
-    //Wait for echo start
-    while(digitalRead(ECHO) == LOW);
+    while(digitalRead(ECHO) == LOW){
+        long startTime = micros();
+    }
+    
+    while(digitalRead(ECHO) == HIGH){
+        long travelTime = micros() - startTime;
+    }
 
-    //Wait for echo end
-    long startTime = micros();
-    while(digitalRead(ECHO) == HIGH);
-    long travelTime = micros() - startTime;
-
-    //Get distance in cm
     int distance = travelTime / 58;
 
     return distance;   
