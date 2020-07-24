@@ -60,16 +60,19 @@ int IRSensor()
 
 int DISTSensor()
 {
-    digitalWrite(TRIG, HIGH);
+    long startTime;
+    long travelTime;
+    
+    digitalWrite(DIST_SENSOR_TRIG, 1);
     delayMicroseconds(20);
-    digitalWrite(TRIG, LOW);
+    digitalWrite(DIST_SENSOR_TRIG, 0);
 
-    while(digitalRead(ECHO) == LOW){
-        long startTime = micros();
+    while(digitalRead(DIST_SENSOR_ECHO) == 0){
+        startTime = micros();
     }
     
-    while(digitalRead(ECHO) == HIGH){
-        long travelTime = micros() - startTime;
+    while(digitalRead(DIST_SENSOR_ECHO) == 1){
+        travelTime = micros() - startTime;
     }
 
     int distance = travelTime / 58;
