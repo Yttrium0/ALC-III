@@ -15,7 +15,7 @@ int setupGpio()
     pinMode(DIST_SENSOR_TRIG, OUTPUT);
     pinMode(DIST_SENSOR_ECHO, INPUT);
     
-    digitalWrite(TRIG, LOW);
+    digitalWrite(DIST_SENSOR_TRIG, LOW);
     delay(30);
 }
 
