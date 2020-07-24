@@ -7,13 +7,13 @@
 
 int main(void)
 {
-        int tZ = 1;
-        int tcr = 0;
-        int la = 48.9149;
-        int lon = 2.2526599999999917;
-        int alt = 0;
+    int tZ = 1;
+    int tcr = 0;
+    int la = 48.9149;
+    int lon = 2.2526599999999917;
+    int alt = 0;
         
-        setupGpio();
+    setupGpio();
 
     while (1)
     {
