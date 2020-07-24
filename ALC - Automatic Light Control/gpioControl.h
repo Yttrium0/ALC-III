@@ -14,6 +14,9 @@ int setupGpio()
     pinMode(IR_SENSOR_GPIO, INPUT);
     pinMode(DIST_SENSOR_TRIG, OUTPUT);
     pinMode(DIST_SENSOR_ECHO, INPUT);
+    
+    digitalWrite(TRIG, LOW);
+    delay(30);
 }
 
 int lightControl(int cmd)
@@ -57,9 +60,6 @@ int IRSensor()
 
 int DISTSensor()
 {
-    digitalWrite(TRIG, LOW);
-    delay(30);
-
     digitalWrite(TRIG, HIGH);
     delayMicroseconds(20);
     digitalWrite(TRIG, LOW);
