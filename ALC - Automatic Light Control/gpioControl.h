@@ -10,7 +10,7 @@
 
 int setupGpio()
 {
-    wiringPiSetupGpio();
+    wiringPiSetup();
     pinMode(IR_SENSOR_GPIO, INPUT);
     pinMode(DIST_SENSOR_TRIG, OUTPUT);
     pinMode(DIST_SENSOR_ECHO, INPUT);
