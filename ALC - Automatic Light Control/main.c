@@ -5,8 +5,6 @@
 #include "timeControle.h"
 #include "ephemeride.h"
 
-const float compteurTime = 60; //nb sec avant arret automatique lumière
-
 int main(void)
 {
         int tZ = 1;
@@ -35,31 +33,16 @@ int main(void)
 
         //savoir si c jour ou nuit
 
-        if (hr_minLSoleil < hr_minLocal && hr_minLocal > hr_minCSoleil)
+        if (hr_minLSoleil >= hr_minLocal || hr_minLocal >= hr_minCSoleil)
         {
-            sleep(1); //si c le jour attendre 1sec
-        }
-        else
-        {
-            //si nuit
-            if (IRSensor() == 1 && lightControl(99) == 0)
-            {
-                lightControl(1);
-            }
-            else if (IRSensor() == 1 && lightControl(99) == 1)
-            {
-                chronometre = 0;
-            }
-            else if (IRSensor() == 0 && lightControl(99) == 1)
-            {
-                sleep(0.5);
-                chronometre = chronometre + 0.5;
-
-                if (chronometre == compteurTime)
-                {
-                    lightControl(0);
-                }
-            }
+           if(IRSensor() == 1 && lightControl(99) == 0){
+                  lightControl(1);
+           }
+           else if(lightControl(99) == 1){
+                   if(DISTSensor() <= 60 && IRSensor() == 0){
+                           lightControl(0);
+                   }
+           }
         }
     }
     return 0;
