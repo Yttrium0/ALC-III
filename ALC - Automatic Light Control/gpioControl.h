@@ -10,7 +10,10 @@
 
 int setupGpio()
 {
-    
+    wiringPiSetupGpio();
+    pinMode(IR_SENSOR_GPIO, INPUT);
+    pinMode(DIST_SENSOR_TRIG, OUTPUT);
+    pinMode(DIST_SENSOR_ECHO, INPUT);
     
     
 }
@@ -59,9 +62,7 @@ int IRSensor()
 int DISTSensor()
 {
     wiringPiSetup();
-    pinMode(TRIG, OUTPUT);
-    pinMode(ECHO, INPUT);
-
+    
     //TRIG pin must start LOW
     digitalWrite(TRIG, LOW);
     delay(30);
