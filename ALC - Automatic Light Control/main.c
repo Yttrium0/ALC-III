@@ -12,6 +12,8 @@ int main(void)
         int la = 48.9149;
         int lon = 2.2526599999999917;
         int alt = 0;
+        
+        setupGpio();
 
     while (1)
     {
